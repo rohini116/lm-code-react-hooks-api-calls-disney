@@ -1,17 +1,18 @@
-import { DisneyCharacter } from "../disney_character"
+import { DisneyCharacter } from "../disney_character";
+import React, { useContext } from "react";
+import { FavouritesContext } from "../App";
 
 // for our props we can reuse the DisneyCharacter interface
 // - defining an anonymous type that just has one property - a DisneyCharacter
 interface CharacterProps {
   character: DisneyCharacter;
-  characterFavourites: Array<number>;
   updateFavourites: (favourites: Array<number>) => void;
 }
 const Character: React.FC<CharacterProps> = ({
   character,
-  characterFavourites,
   updateFavourites,
 }) => {
+  const characterFavourites = useContext(FavouritesContext);
   let imageSrc = "https://picsum.photos/300/200/?blur";
 
   if (character.imageUrl) {
@@ -26,6 +27,7 @@ const Character: React.FC<CharacterProps> = ({
   }
 
   function toggleFavouriteForCharacter(characterId: number) {
+    
     if (!characterFavourites.includes(characterId)) {
       // add to favourites
       updateFavourites([...characterFavourites, characterId]);
