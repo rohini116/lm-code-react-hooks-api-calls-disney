@@ -19,8 +19,8 @@ const App : React.FC = () => {
   };
 
   useEffect(() => {
-    getCharacters(1);
-  }, []);
+    getCharacters(currentPage);
+  }, [currentPage]);
   // Some dummy state representing disney characters
   const [characters, setCharacters] = useState<Array<DisneyCharacter>>([]);
 
